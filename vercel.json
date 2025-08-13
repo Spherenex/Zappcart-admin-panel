@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/**/*.js", "use": "@vercel/node", "config": { "runtime": "nodejs22.x" } },
+    { "src": "build/**/*", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/api/health", "dest": "/api/health.js" },
+    { "src": "/api/test-deployment", "dest": "/api/test-deployment.js" },
+    { "src": "/api/create-razorpay-order", "dest": "/api/create-razorpay-order.js" },
+    { "src": "/api/verify-razorpay-payment", "dest": "/api/verify-razorpay-payment.js" },
+    { "src": "/api/send-vendor-sms", "dest": "/api/send-vendor-sms.js" },
+    { "src": "/api/vendor-transfer", "dest": "/api/vendor-transfer.js" },
+    { "src": "/api/payment-status/(.*)", "dest": "/api/payment-status.js?id=$1" },
+    
+    { "src": "/static/(.*)", "dest": "/build/static/$1" },
+    { "src": "/favicon.ico", "dest": "/build/favicon.ico" },
+    { "src": "/manifest.json", "dest": "/build/manifest.json" },
+    { "src": "/robots.txt", "dest": "/build/robots.txt" },
+    { "src": "/(.*)", "dest": "/build/index.html" }
+  ]
+}
